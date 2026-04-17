@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>灵宝百事通 - 电竞IP智慧交互平台</title>
+  
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- 样式文件 -->
+  <link rel="stylesheet" href="./css/variables.css">
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/bonds.css">
+  <link rel="stylesheet" href="./css/onboarding.css">
+  <link rel="stylesheet" href="./css/animations.css">
+  <link rel="stylesheet" href="./css/chat.css">
+  <link rel="stylesheet" href="./css/lingbao.css">
+  <script>
+    (function(){
+      if(location.hash&&location.hash!=='#home'){history.replaceState(null,'',location.pathname+location.search)}
+      var locked=true;
+      var forceTop=function(){if(locked)scrollTo(0,0)};
+      setInterval(forceTop,10);
+      addEventListener('load',function(){setTimeout(function(){locked=false},300)});
+    })();
+  </script>
+</head>
+<body>
+  <!-- 无障碍：跳过导航 -->
+  <a href="#main-content" class="skip-nav" aria-label="跳到主要内容">跳到主要内容</a>
+
+  <!-- 粒子背景 -->
+  <div id="particles-container" class="particles-bg"></div>
+
+  <!-- 顶部导航栏 -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <span class="brand-icon"><img src="./images/灵宝.jpg" alt="灵宝"></span>
+        <span class="brand-text">灵宝百事通</span>
+        <span class="brand-badge">AI</span>
+      </div>
+      
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#home" class="nav-link active" data-nav="home"><span>首页</span></a></li>
+        <li><a href="#lingbao" class="nav-link" data-nav="lingbao"><span>灵宝</span></a></li>
+        <li><a href="#competition" class="nav-link nav-link-section" data-nav="competition" onclick="event.preventDefault(); Lingbao.enterBlock('competition');"><span>赛事指挥官</span></a></li>
+        <li><a href="#mentor" class="nav-link nav-link-section" data-nav="mentor" onclick="event.preventDefault(); Lingbao.enterBlock('mentor');"><span>荣耀导师</span></a></li>
+        <li><a href="#travel" class="nav-link nav-link-section" data-nav="travel" onclick="event.preventDefault(); Lingbao.enterBlock('travel');"><span>电竞文旅</span></a></li>
+      </ul>
+      
+      <div class="nav-actions">
+        <button class="btn btn-ghost" id="themeToggle" title="切换主题">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+        </button>
+        <button class="btn btn-primary btn-glow" id="startChatBtn">
+          <span>开始体验</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+        <!-- 移动端汉堡菜单 -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== 主页面内容（首页 + 灵宝）========== -->
+  <main id="main-content">
+    <!-- Hero 区域 -->
+    <section class="hero-section" id="home">
+      <div class="hero-content">
+        <div class="hero-badge animate-fade-in">
+          <span class="badge-dot"></span>
+          基于腾讯AI工具的电竞创新应用
+        </div>
+        
+        <h1 class="hero-title animate-slide-up">
+          <span class="title-line">连接电竞文化与</span>
+          <span class="title-gradient">智能交互世界</span>
+        </h1>
+        
+        <p class="hero-subtitle animate-fade-in-delay">
+          基于腾讯元器 AI 智能体，打造沉浸式电竞互动体验<br>
+          赛事分析 · 英雄教学 · 电竞文旅 · 选手羁绊
+        </p>
+        
+        <div class="hero-actions animate-fade-in-delay-2">
+          <button class="btn btn-primary btn-lg btn-glow" onclick='document.getElementById("lingbao").scrollIntoView({behavior: "smooth"}); document.querySelectorAll(".nav-link").forEach(l => l.classList.remove("active")); document.querySelector(".nav-link[href=\"#lingbao\"]").classList.add("active");'>
+            <span>认识灵宝</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+            </svg>
+          </button>
+          <button class="btn btn-outline btn-lg" onclick='document.getElementById("tech").scrollIntoView({behavior: "smooth"}); document.querySelectorAll(".nav-link").forEach(l => l.classList.remove("active"));'>
+            了解更多
+          </button>
+        </div>
+        
+        <!-- 统计数据 -->
+        <div class="hero-stats animate-fade-in-delay-3">
+          <div class="stat-item">
+            <span class="stat-number">3</span>
+            <span class="stat-label">AI 智能场景</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">∞</span>
+            <span class="stat-label">无限对话可能</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">电竞 IP 授权</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 右侧装饰 -->
+      <div class="hero-decoration">
+        <div class="floating-card card-1">
+          <div class="card-icon">🏆</div>
+          <span>KPL赛事</span>
+        </div>
+        <div class="floating-card card-2">
+          <div class="card-icon">🎮</div>
+          <span>英雄教学</span>
+        </div>
+        <div class="floating-card card-3">
+          <div class="card-icon">🌆</div>
+          <span>电竞文旅</span>
+        </div>
+        <!-- 浮动灵宝动图 -->
+        <div class="floating-lingbao">
+          <img src="./images/灵宝动图.gif" alt="灵宝">
+          <div class="floating-lingbao-bubble">
+            来找我聊天吧！✨
+          </div>
+        </div>
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+      </div>
+    </section>
+
+    <!-- 灵宝互动区 -->
+    <section class="lingbao-section" id="lingbao">
+      <div class="lingbao-container">
+        <div class="section-header">
+          <span class="section-tag">智能向导</span>
+          <h2 class="section-title">灵宝 - 你的电竞引路人</h2>
+          <p class="section-desc">告诉灵宝你想了解什么，它会为你找到最合适的英雄伙伴</p>
+        </div>
+
+        <!-- 左右布局容器 -->
+        <div class="lingbao-layout">
+          <!-- 左侧：灵宝舞台 -->
+          <div class="lingbao-left">
+            <div class="lingbao-stage">
+              <!-- 背景装饰 -->
+              <div class="stage-bg-orb orb-a"></div>
+              <div class="stage-bg-orb orb-b"></div>
+              <div class="stage-bg-orb orb-c"></div>
+
+              <!-- 灵宝中心 -->
+              <div class="lingbao-center">
+                <div class="lingbao-ring ring-outer"></div>
+                <div class="lingbao-ring ring-inner"></div>
+                <div class="lingbao-avatar">
+                  <img src="./images/灵宝.jpg" alt="灵宝" id="lingbaoAvatar">
+                  <div class="lingbao-glow"></div>
+                </div>
+                <div class="lingbao-name">灵宝</div>
+              </div>
+
+              <!-- 三个英雄卡片 -->
+              <div class="hero-orbit">
+                <div class="orbit-card" data-hero="competition" id="hero-competition">
+                  <div class="orbit-ring"></div>
+                  <div class="orbit-avatar">
+                    <img src="./images/heroes/亚瑟.jpg" alt="亚瑟">
+                  </div>
+                  <div class="orbit-info">
+                    <span class="orbit-name">亚瑟</span>
+                    <span class="orbit-role">赛事指挥官</span>
+                  </div>
+                  <div class="orbit-icon">🏆</div>
+                  <div class="orbit-connector" id="conn-competition"></div>
+                </div>
+
+                <div class="orbit-card" data-hero="mentor" id="hero-mentor">
+                  <div class="orbit-ring"></div>
+                  <div class="orbit-avatar">
+                    <img src="./images/heroes/妲己.jpg" alt="妲己">
+                  </div>
+                  <div class="orbit-info">
+                    <span class="orbit-name">妲己</span>
+                    <span class="orbit-role">荣耀导师</span>
+                  </div>
+                  <div class="orbit-icon">🎮</div>
+                  <div class="orbit-connector" id="conn-mentor"></div>
+                </div>
+
+                <div class="orbit-card" data-hero="travel" id="hero-travel">
+                  <div class="orbit-ring"></div>
+                  <div class="orbit-avatar">
+                    <img src="./images/heroes/马可波罗.jpg" alt="马可波罗">
+                  </div>
+                  <div class="orbit-info">
+                    <span class="orbit-name">马可波罗</span>
+                    <span class="orbit-role">电竞文旅</span>
+                  </div>
+                  <div class="orbit-icon">🌆</div>
+                  <div class="orbit-connector" id="conn-travel"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 右侧：灵宝对话区 -->
+          <div class="lingbao-right">
+            <div class="lingbao-chat" id="lingbaoChat">
+          <div class="lingbao-messages" id="lingbaoMessages">
+            <div class="lb-msg lb-system">
+              <div class="lb-msg-avatar">
+                <img src="./images/灵宝.jpg" alt="灵宝">
+              </div>
+              <div class="lb-msg-content">
+                <p>你好呀！我是<strong>灵宝</strong>，你的电竞引路人！</p>
+                <p>告诉我你想了解什么，我会帮你找到最合适的伙伴：</p>
+                <ul>
+                  <li>🏆 想了解<strong>KPL赛事、战队战术</strong>？找<strong>亚瑟</strong></li>
+                  <li>🎮 想学习<strong>英雄技巧、上分攻略</strong>？找<strong>妲己</strong></li>
+                  <li>🌆 想探索<strong>电竞城市、文旅攻略</strong>？找<strong>马可波罗</strong></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="lingbao-input-area">
+            <div class="lingbao-input-wrapper">
+              <input type="text" id="lingbaoInput" placeholder="问灵宝你想了解什么..." maxlength="200">
+              <button class="lb-send-btn" id="lingbaoSendBtn" title="发送">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22,2 15,22 11,13 2,9"/>
+                </svg>
+              </button>
+            </div>
+            <div class="lingbao-quick-tags" id="lingbaoQuickTags">
+              <button class="lb-quick-tag" data-scenario="competition">🏆 赛事战报</button>
+              <button class="lb-quick-tag" data-scenario="mentor">🎮 英雄教学</button>
+              <button class="lb-quick-tag" data-scenario="travel">🌆 电竞文旅</button>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      </div>>
+    </section>
+
+    <!-- 技术说明区 -->
+    <section class="tech-section" id="tech">
+      <div class="container">
+        <div class="tech-showcase">
+          <div class="tech-info">
+            <span class="section-tag">技术架构</span>
+            <h2 class="section-title">基于腾讯AI生态构建</h2>
+            <p class="tech-desc">
+              本项目深度融合腾讯系AI产品能力，打造创新的电竞IP智慧交互平台
+            </p>
+            
+            <div class="tech-stack-list">
+              <div class="tech-item">
+                <div class="tech-icon codebuddy">💻</div>
+                <div class="tech-details">
+                  <h4>CodeBuddy</h4>
+                  <p>智能代码开发与调试</p>
+                </div>
+              </div>
+              <div class="tech-item">
+                <div class="tech-icon yuanqi">🤖</div>
+                <div class="tech-details">
+                  <h4>腾讯元器</h4>
+                  <p>多模态智能体对话引擎</p>
+                </div>
+              </div>
+              <div class="tech-item">
+                <div class="tech-icon yuanbao">✨</div>
+                <div class="tech-details">
+                  <h4>腾讯元宝</h4>
+                  <p>内容创意与文案优化</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tech-visual">
+            <div class="arch-diagram">
+              <div class="arch-layer frontend">
+                <span class="layer-label">前端界面</span>
+                <span class="layer-tech">HTML/CSS/JS</span>
+              </div>
+              <div class="arch-arrow">↓</div>
+              <div class="arch-layer logic">
+                <span class="layer-label">业务逻辑</span>
+                <span class="layer-tech">App Logic</span>
+              </div>
+              <div class="arch-arrow">↓</div>
+              <div class="arch-layer ai">
+                <span class="layer-label">AI 引擎</span>
+                <span class="layer-tech">腾讯元器 API</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== 板块1：KPL赛事指挥官 ========== -->
+  <div class="block-overlay" id="block-competition">
+    <div class="block-view">
+      <!-- 板块顶部栏 -->
+      <div class="block-header">
+        <div class="block-header-left">
+          <button class="block-back-btn" id="back-competition" title="返回灵宝">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            <span>返回灵宝</span>
+          </button>
+          <div class="block-divider"></div>
+          <div class="block-title-group">
+            <span class="block-emoji">🏆</span>
+            <div>
+              <h2 class="block-title">KPL赛事指挥官</h2>
+              <p class="block-subtitle">亚瑟 · 赛事解说与战术分析</p>
+            </div>
+          </div>
+        </div>
+        <div class="block-header-right">
+          <button class="btn btn-ghost" id="backToHome-competition" title="返回首页">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+              <polyline points="9,22 9,12 15,12 15,22"/>
+            </svg>
+            <span>返回首页</span>
+          </button>
+          <button class="btn btn-ghost" id="themeToggle2" title="切换主题">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- 板块功能导航栏 -->
+      <nav class="block-nav" id="blockNav-competition">
+        <div class="block-nav-inner">
+          <a href="#" class="block-nav-link active" data-target="chatArea-competition">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            AI 对话
+          </a>
+          <a href="#" class="block-nav-link" data-target="clubs-competition">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            KPL 俱乐部
+          </a>
+          <a href="#" class="block-nav-link" data-target="bonds-competition">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            选手羁绊
+          </a>
+        </div>
+      </nav>
+
+      <!-- 板块内容 -->
+      <div class="block-content">
+          <div class="lingbao-chat-decoration" style="
+            position: absolute;
+            left: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 270px;
+            height: 270px;
+            z-index: 5;
+            pointer-events: none;
+            opacity: 0.85;
+          ">
+            <img src="./images/灵宝动图.gif" alt="灵宝" style="
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+              filter: drop-shadow(0 4px 12px rgba(108, 99, 255, 0.4));
+              animation: lingbaoChatFloat 3s ease-in-out infinite;
+    ">
+  </div>
+        <!-- AI对话区 -->
+        <div class="block-chat-area" id="chatArea-competition">
+          <div class="container">
+            <!-- 快捷提示词 -->
+            <div class="quick-prompts" id="quickPrompts-competition">
+              <span class="quick-label">试试问：</span>
+              <div class="quick-buttons" id="quickButtons-competition"></div>
+            </div>
+            
+            <!-- 消息列表 -->
+            <div class="messages-container" id="messagesContainer-competition"></div>
+            
+            <!-- 输入区域 -->
+            <div class="input-area" id="inputArea-competition">
+              <div class="input-wrapper">
+                <textarea id="messageInput-competition" placeholder="输入你想问的问题..." rows="1" autofocus></textarea>
+                <div class="input-actions">
+                  <button class="icon-btn" id="voiceInputBtn-competition" title="语音输入">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/>
+                    </svg>
+                  </button>
+                  <button class="icon-btn" id="sendBtn-competition" title="发送消息">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22,2 15,22 11,13 2,9"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="input-hint">
+                <span class="hint-text">按 Enter 发送 · Shift + Enter 换行 · 由腾讯元器 AI 驱动</span>
+                <div class="hint-actions">
+                  <button class="hint-btn new-chat-btn" data-block="competition" title="开始新对话">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 5v14M5 12h14"/>
+                    </svg>
+                    <span>新对话</span>
+                  </button>
+                  <select class="model-select" data-block="competition" title="切换模型" aria-label="选择AI模型">
+                    <option value="hunyuan-2.0-thinking-20251109" selected>混元思考模型 (联网)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 板块专属功能区：KPL俱乐部 + 选手羁绊 -->
+        <div class="block-features">
+          <!-- KPL俱乐部 -->
+          <section class="block-feature-section" id="clubs-competition">
+            <div class="container">
+              <div class="section-header">
+                <span class="section-tag">俱乐部专属</span>
+                <h2 class="section-title">KPL 俱乐部全览</h2>
+                <p class="section-desc">点击俱乐部LOGO，了解赛程、队员、战绩和背景故事</p>
+              </div>
+              <div class="clubs-grid" id="clubsGrid-competition"></div>
+            </div>
+          </section>
+
+          <!-- 选手羁绊 -->
+          <section class="block-feature-section" id="bonds-competition">
+            <div class="container">
+              <div class="section-header">
+                <span class="section-tag">选手羁绊</span>
+                <h2 class="section-title">KPL 选手关系图谱</h2>
+                <p class="section-desc">探索传奇选手间的队友、宿敌与传承羁绊</p>
+              </div>
+              <div class="hot-bonds-section" id="hotBonds-competition">
+                <h3 class="bonds-subtitle">🔥 经典羁绊组合</h3>
+                <div class="hot-bonds-grid" id="hotBondsGrid-competition"></div>
+              </div>
+              <div class="players-section">
+                <h3 class="bonds-subtitle">👤 KPL选手</h3>
+                <div class="players-filter-bar" id="playersFilterBar-competition">
+                  <button class="player-filter-btn active" data-filter="all">全部</button>
+                  <button class="player-filter-btn" data-filter="active">现役</button>
+                  <button class="player-filter-btn" data-filter="legendary">传奇</button>
+                </div>
+                <div class="players-grid" id="playersGrid-competition"></div>
+              </div>
+              <div class="bond-graph-section">
+                <h3 class="bonds-subtitle">🤝 羁绊关系网络</h3>
+                <div class="bond-graph-container" id="bondGraphContainer-competition">
+                  <canvas id="bondGraphCanvas-competition"></canvas>
+                  <div class="bond-graph-legend">
+                    <span class="legend-item"><span class="legend-dot" style="background:#10B981"></span>队友</span>
+                    <span class="legend-item"><span class="legend-dot" style="background:#EF4444"></span>宿敌</span>
+                    <span class="legend-item"><span class="legend-dot" style="background:#8B5CF6"></span>传承</span>
+                  </div>
+                </div>
+                <p class="bond-graph-hint">拖拽选手节点可查看详情，鼠标悬停显示羁绊信息</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- 俱乐部详情模态框（在competition板块内部） -->
+      <div class="club-detail-overlay" id="clubDetailOverlay">
+        <div class="club-detail-card" id="clubDetailCard">
+          <button class="club-detail-close" id="clubDetailClose">&times;</button>
+          <div class="club-detail-content"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 板块2：荣耀导师 ========== -->
+  <div class="block-overlay" id="block-mentor">
+    <div class="block-view">
+      <div class="block-header">
+        <div class="block-header-left">
+          <button class="block-back-btn" id="back-mentor" title="返回灵宝">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            <span>返回灵宝</span>
+          </button>
+          <div class="block-divider"></div>
+          <div class="block-title-group">
+            <span class="block-emoji">🎮</span>
+            <div>
+              <h2 class="block-title">荣耀导师</h2>
+              <p class="block-subtitle">妲己 · 英雄教学与上分攻略</p>
+            </div>
+          </div>
+        </div>
+        <div class="block-header-right">
+          <button class="btn btn-ghost" id="backToHome-mentor" title="返回首页">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+              <polyline points="9,22 9,12 15,12 15,22"/>
+            </svg>
+            <span>返回首页</span>
+          </button>
+          <button class="btn btn-ghost" id="themeToggle3" title="切换主题">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- 板块功能导航栏 -->
+      <nav class="block-nav" id="blockNav-mentor">
+        <div class="block-nav-inner">
+          <a href="#" class="block-nav-link active" data-target="chatArea-mentor">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            AI 对话
+          </a>
+          <a href="#" class="block-nav-link" data-target="heroes-mentor">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            英雄IP
+          </a>
+        </div>
+      </nav>
+
+      <div class="block-content">
+        <div class="block-chat-area" id="chatArea-mentor">
+            <div class="lingbao-chat-decoration" style="
+            position: absolute;
+            left: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 270px;
+            height: 270px;
+            z-index: 5;
+            pointer-events: none;
+            opacity: 0.85;
+          ">
+            <img src="./images/灵宝动图.gif" alt="灵宝" style="
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+              filter: drop-shadow(0 4px 12px rgba(108, 99, 255, 0.4));
+              animation: lingbaoChatFloat 3s ease-in-out infinite;
+    ">
+  </div>
+          <div class="container">
+            <div class="quick-prompts" id="quickPrompts-mentor">
+              <span class="quick-label">试试问：</span>
+              <div class="quick-buttons" id="quickButtons-mentor"></div>
+            </div>
+            <div class="messages-container" id="messagesContainer-mentor"></div>
+            <div class="input-area" id="inputArea-mentor">
+              <div class="input-wrapper">
+                <textarea id="messageInput-mentor" placeholder="输入你想问的问题..." rows="1"></textarea>
+                <div class="input-actions">
+                  <button class="icon-btn" id="voiceInputBtn-mentor" title="语音输入">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/>
+                    </svg>
+                  </button>
+                  <button class="icon-btn" id="sendBtn-mentor" title="发送消息">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22,2 15,22 11,13 2,9"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="input-hint">
+                <span class="hint-text">按 Enter 发送 · Shift + Enter 换行 · 由腾讯元器 AI 驱动</span>
+                <div class="hint-actions">
+                  <button class="hint-btn new-chat-btn" data-block="mentor" title="开始新对话">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 5v14M5 12h14"/>
+                    </svg>
+                    <span>新对话</span>
+                  </button>
+                  <select class="model-select" data-block="mentor" title="切换模型" aria-label="选择AI模型">
+                    <option value="hunyuan-2.0-thinking-20251109" selected>混元思考模型 (联网)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 板块专属功能区：英雄IP -->
+        <div class="block-features">
+          <section class="block-feature-section" id="heroes-mentor">
+            <div class="container">
+              <div class="section-header">
+                <span class="section-tag">英雄IP</span>
+                <h2 class="section-title">王者英雄全览</h2>
+                <p class="section-desc">点击英雄，AI为你详解背景故事、世界线、玩法与装备技能搭配</p>
+              </div>
+              <div class="heroes-filter-bar" id="heroesFilterBar-mentor">
+                <button class="hero-filter-btn active" data-role="all">全部</button>
+                <button class="hero-filter-btn" data-role="warrior">战士</button>
+                <button class="hero-filter-btn" data-role="mage">法师</button>
+                <button class="hero-filter-btn" data-role="tank">坦克</button>
+                <button class="hero-filter-btn" data-role="assassin">刺客</button>
+                <button class="hero-filter-btn" data-role="archer">射手</button>
+                <button class="hero-filter-btn" data-role="support">辅助</button>
+              </div>
+              <div class="heroes-grid" id="heroesGrid-mentor"></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 板块3：电竞文旅向导 ========== -->
+  <div class="block-overlay" id="block-travel">
+    <div class="block-view">
+      <div class="block-header">
+        <div class="block-header-left">
+          <button class="block-back-btn" id="back-travel" title="返回灵宝">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            <span>返回灵宝</span>
+          </button>
+          <div class="block-divider"></div>
+          <div class="block-title-group">
+            <span class="block-emoji">🌆</span>
+            <div>
+              <h2 class="block-title">电竞文旅向导</h2>
+              <p class="block-subtitle">马可波罗 · 电竞城市探索与旅行规划</p>
+            </div>
+          </div>
+        </div>
+        <div class="block-header-right">
+          <button class="btn btn-ghost" id="backToHome-travel" title="返回首页">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+              <polyline points="9,22 9,12 15,12 15,22"/>
+            </svg>
+            <span>返回首页</span>
+          </button>
+          <button class="btn btn-ghost" id="themeToggle4" title="切换主题">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- 板块功能导航栏 -->
+      <nav class="block-nav" id="blockNav-travel">
+        <div class="block-nav-inner">
+          <a href="#" class="block-nav-link active" data-target="chatArea-travel">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            AI 对话
+          </a>
+          <a href="#" class="block-nav-link" data-target="tourism-travel">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            电竞文旅
+          </a>
+        </div>
+      </nav>
+
+      <div class="block-content">
+        <div class="block-chat-area" id="chatArea-travel">
+            <div class="lingbao-chat-decoration" style="
+            position: absolute;
+            left: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 270px;
+            height: 270px;
+            z-index: 5;
+            pointer-events: none;
+            opacity: 0.85;
+          ">
+            <img src="./images/灵宝动图.gif" alt="灵宝" style="
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+              filter: drop-shadow(0 4px 12px rgba(108, 99, 255, 0.4));
+              animation: lingbaoChatFloat 3s ease-in-out infinite;
+    ">
+  </div>
+          <div class="container">
+            <div class="quick-prompts" id="quickPrompts-travel">
+              <span class="quick-label">试试问：</span>
+              <div class="quick-buttons" id="quickButtons-travel"></div>
+            </div>
+            <div class="messages-container" id="messagesContainer-travel"></div>
+            <div class="input-area" id="inputArea-travel">
+              <div class="input-wrapper">
+                <textarea id="messageInput-travel" placeholder="输入你想问的问题..." rows="1"></textarea>
+                <div class="input-actions">
+                  <button class="icon-btn" id="voiceInputBtn-travel" title="语音输入">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/>
+                    </svg>
+                  </button>
+                  <button class="icon-btn" id="sendBtn-travel" title="发送消息">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22,2 15,22 11,13 2,9"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="input-hint">
+                <span class="hint-text">按 Enter 发送 · Shift + Enter 换行 · 由腾讯元器 AI 驱动</span>
+                <div class="hint-actions">
+                  <button class="hint-btn new-chat-btn" data-block="travel" title="开始新对话">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 5v14M5 12h14"/>
+                    </svg>
+                    <span>新对话</span>
+                  </button>
+                  <select class="model-select" data-block="travel" title="切换模型" aria-label="选择AI模型">
+                    <option value="hunyuan-2.0-thinking-20251109" selected>混元思考模型 (联网)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 板块专属功能区：电竞文旅 -->
+        <div class="block-features">
+          <section class="block-feature-section" id="tourism-travel">
+            <div class="container">
+              <div class="section-header">
+                <span class="section-tag">电竞文旅</span>
+                <h2 class="section-title">探索电竞主场城市</h2>
+                <p class="section-desc">点击地图探索全国电竞主场城市，感受线下观赛的独特魅力</p>
+              </div>
+              <!-- 中国城市地图 -->
+              <div class="china-map-section">
+                <div class="china-map-container" id="chinaMap">
+                  <div class="map-bg"></div>
+                </div>
+                <div class="map-legend">
+                  <div class="legend-item">
+                    <span class="legend-dot featured"></span>
+                    <span>冠军城市</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-dot normal"></span>
+                    <span>主场城市</span>
+                  </div>
+                </div>
+              </div>
+              <div class="tourism-overview" id="tourismOverview-travel"></div>
+              <div class="tourism-grid" id="tourismGrid-travel"></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <footer class="footer" id="mainFooter">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="brand-icon"><img src="./images/灵宝.jpg" alt="灵宝"></span>
+          <span class="brand-text">灵宝百事通</span>
+        </div>
+        <p class="footer-desc">
+          电竞AI应用创新与实践 · 腾讯开悟大赛作品<br>
+          基于 CodeBuddy + 腾讯元器 开发
+        </p>
+        <div class="footer-links">
+          <a href="#home">首页</a>
+          <a href="#lingbao">灵宝</a>
+        </div>
+        <p class="footer-copyright">
+          © 2026 灵宝百事通 · 腾讯开悟电竞赛事
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast 提示 -->
+  <div id="toast" class="toast"></div>
+
+  <!-- 首次引导轮播 -->
+  <div class="onboarding-overlay" id="onboardingOverlay" style="display:none;">
+    <div class="onboarding-slider">
+      <div class="onboarding-slides" id="onboardingSlides">
+        <div class="onboarding-slide active" data-slide="0">
+          <div class="onboarding-icon-wrap">
+            <span class="onboarding-icon">⚡</span>
+            <div class="onboarding-icon-ring"></div>
+          </div>
+          <h2 class="onboarding-title">欢迎来到灵宝百事通</h2>
+          <p class="onboarding-desc">电竞IP智慧交互平台，基于腾讯元器AI，为你带来沉浸式电竞体验</p>
+        </div>
+        <div class="onboarding-slide" data-slide="1">
+          <div class="onboarding-icon-wrap">
+            <span class="onboarding-icon">🎮</span>
+            <div class="onboarding-icon-ring"></div>
+          </div>
+          <h2 class="onboarding-title">三大 AI 智能场景</h2>
+          <p class="onboarding-desc">通过灵宝进入：赛事指挥官解读KPL赛事，荣耀导师教你上分技巧，电竞文旅向导探索主场城市</p>
+          <div class="onboarding-features">
+            <span class="ob-feature">🏆 赛事分析</span>
+            <span class="ob-feature">🎮 英雄教学</span>
+            <span class="ob-feature">🌆 城市文旅</span>
+          </div>
+        </div>
+        <div class="onboarding-slide" data-slide="2">
+          <div class="onboarding-icon-wrap">
+            <span class="onboarding-icon">🚀</span>
+            <div class="onboarding-icon-ring"></div>
+          </div>
+          <h2 class="onboarding-title">准备就绪</h2>
+          <p class="onboarding-desc">配置API密钥即可开启对话，支持语音输入和智能播报</p>
+          <div class="onboarding-features">
+            <span class="ob-feature">🎤 语音输入</span>
+            <span class="ob-feature">🔊 语音播报</span>
+            <span class="ob-feature">💡 示例问题</span>
+          </div>
+        </div>
+      </div>
+      <div class="onboarding-dots" id="onboardingDots">
+        <span class="ob-dot active" data-slide="0"></span>
+        <span class="ob-dot" data-slide="1"></span>
+        <span class="ob-dot" data-slide="2"></span>
+      </div>
+      <div class="onboarding-actions">
+        <button class="btn btn-ghost" id="obSkipBtn">跳过</button>
+        <button class="btn btn-primary" id="obNextBtn">下一步</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 配置弹窗（首次使用） -->
+  <div class="modal-overlay" id="configModal" style="display: none;">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>配置腾讯元器API</h3>
+        <button class="icon-btn" id="closeConfigModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="config-desc">请填入你在腾讯元器平台获取的API密钥信息：</p>
+        <div class="form-group">
+          <label for="inputAssistantId">智能体 ID</label>
+          <input type="text" id="inputAssistantId" placeholder="在元器平台获取">
+        </div>
+        <div class="form-group">
+          <label for="inputAccessToken">访问令牌 (Token)</label>
+          <input type="password" id="inputAccessToken" placeholder="在元器平台获取">
+        </div>
+        <p class="config-warning">
+          ⚠️ Token 仅存储在本地浏览器中，不会上传至任何服务器
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="cancelConfig">稍后配置</button>
+        <button class="btn btn-primary" id="saveConfig">保存配置</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS 文件（核心模块同步加载） -->
+  <script src="./js/config.js"></script>
+  <script src="./js/utils.js"></script>
+  <script src="./js/search.js"></script>
+  <script src="./js/api.js"></script>
+  <script src="./js/data.js"></script>
+  <script src="./js/players.js"></script>
+  <script src="./js/components.js?v=2"></script>
+  <script src="./js/chat.js"></script>
+  <script src="./js/lingbao.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>

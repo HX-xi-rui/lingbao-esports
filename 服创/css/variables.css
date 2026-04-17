@@ -1,0 +1,572 @@
+/* ========== CSS 变量定义 ========== */
+:root {
+  /* 色彩系统 */
+  --primary: #6366F1;
+  --primary-light: #818CF8;
+  --primary-dark: #4F46E5;
+  --secondary: #8B5CF6;
+  --accent: #F59E0B;
+  --accent-light: #FBBF24;
+  
+  /* 背景色 */
+  --bg-primary: #0F0F1A;
+  --bg-secondary: #1A1A2E;
+  --bg-surface: #16162A;
+  --bg-card: rgba(26, 26, 46, 0.8);
+  
+  /* 文字色 */
+  --text-primary: #FFFFFF;
+  --text-secondary: #A1A1AA;
+  --text-muted: #6B7280;
+  
+  /* 状态色 */
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  --info: #3B82F6;
+  
+  /* 边框 */
+  --border-color: rgba(99, 102, 241, 0.15);
+  --border-hover: rgba(99, 102, 241, 0.3);
+  
+  /* 渐变 */
+  --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  --gradient-accent: linear-gradient(135deg, var(--accent) 0%, #EC4899 100%);
+  --gradient-glow: linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%);
+  
+  /* 阴影 */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 30px rgba(99, 102, 241, 0.25);
+  --shadow-glow-accent: 0 0 30px rgba(245, 158, 11, 0.25);
+  
+  /* 圆角 */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+  
+  /* 间距 */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  
+  /* 字体 */
+  --font-display: 'Orbitron', 'Rajdhani', sans-serif;
+  --font-body: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  
+  /* 过渡 */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+  
+  /* 层级 */
+  --z-navbar: 1000;
+  --z-modal: 1100;
+  --z-toast: 1200;
+  
+  /* 容器宽度 */
+  --container-max: 1200px;
+}
+
+/* 深色主题（默认） */
+[data-theme="dark"] {
+  --bg-primary: #0F0F1A;
+  --bg-secondary: #1A1A2E;
+  --bg-surface: #16162A;
+  --text-primary: #FFFFFF;
+  --text-secondary: #A1A1AA;
+}
+
+/* 浅色主题 - 青蓝色风格 */
+[data-theme="light"] {
+  --bg-primary: #E8F4F8;
+  --bg-secondary: #D4ECF4;
+  --bg-surface: #F0F8FB;
+  --text-primary: #0F172A;
+  --text-secondary: #374151;
+  
+  /* 覆盖主题色变量 */
+  --primary: #06B6D4;
+  --primary-light: #0891B2;
+  --primary-dark: #0E7490;
+  --secondary: #22D3EE;
+  
+  /* 边框 */
+  --border-color: rgba(6, 182, 212, 0.15);
+  --border-hover: rgba(6, 182, 212, 0.3);
+  
+  /* 渐变 */
+  --gradient-primary: linear-gradient(135deg, #06B6D4 0%, #22D3EE 100%);
+  --gradient-glow: linear-gradient(135deg, rgba(6, 182, 212, 0.3) 0%, rgba(34, 211, 238, 0.3) 100%);
+  
+  /* 阴影 */
+  --shadow-glow: 0 0 30px rgba(6, 182, 212, 0.25);
+
+  /* 浅色主题专用覆盖 */
+  .navbar {
+    background: rgba(232, 244, 248, 0.92) !important;
+    border-bottom-color: rgba(6, 182, 212, 0.15) !important;
+  }
+
+  .navbar.scrolled {
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+  }
+
+  /* 粒子背景降低亮度 */
+  .particles-bg { opacity: 0.25; }
+
+  /* 主要按钮 - 浅色风格（白色背景+青蓝色文字） */
+  .btn-primary {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid rgba(6, 182, 212, 0.3) !important;
+    color: #0891B2 !important;
+    box-shadow: 0 4px 14px rgba(6, 182, 212, 0.15) !important;
+  }
+
+  .btn-primary:hover {
+    background: #06B6D4 !important;
+    border-color: #06B6D4 !important;
+    color: #fff !important;
+    box-shadow: 0 6px 20px rgba(6, 182, 212, 0.3) !important;
+  }
+
+  .btn-glow::after {
+    background: radial-gradient(circle at center, rgba(6, 182, 212, 0.15), transparent 70%);
+  }
+
+  /* 次要按钮 - 浅色风格 */
+  .btn-outline {
+    background: rgba(255, 255, 255, 0.85) !important;
+    border-color: rgba(6, 182, 212, 0.25) !important;
+    color: #0891B2 !important;
+  }
+
+  .btn-outline:hover {
+    background: rgba(6, 182, 212, 0.12) !important;
+    border-color: #06B6D4 !important;
+    color: #0E7490 !important;
+  }
+
+  /* 卡片调整 */
+  .feature-card,
+  .tourism-card {
+    border-color: rgba(6, 182, 212, 0.18);
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 4px 20px rgba(6, 182, 212, 0.08);
+  }
+
+  /* 文旅筛选栏 */
+  .tourism-filters {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(6, 182, 212, 0.15) !important;
+    box-shadow: 0 2px 12px rgba(6, 182, 212, 0.06);
+  }
+
+  .filter-tag {
+    color: #374151;
+    background: rgba(6, 182, 212, 0.08);
+    border-color: rgba(6, 182, 212, 0.12);
+  }
+
+  .filter-tag:hover {
+    background: rgba(6, 182, 212, 0.15);
+    border-color: rgba(6, 182, 212, 0.2);
+  }
+
+  .filter-tag.active {
+    background: linear-gradient(135deg, #06B6D4, #0891B2) !important;
+    border-color: transparent !important;
+    color: #fff !important;
+    box-shadow: 0 4px 12px rgba(6, 182, 212, 0.25);
+  }
+
+  /* 文旅Hero卡 */
+  .tourism-hero {
+    background: #fff !important;
+    border-color: rgba(6, 182, 212, 0.2) !important;
+  }
+
+  .hero-image-wrap::after,
+  .hero-overlay {
+    background: linear-gradient(to top, #E8F4F8 0%, transparent 60%) !important;
+  }
+
+  .hero-city-name {
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+
+  .highlight-item,
+  .detail-highlight-item {
+    background: #E8F4F8 !important;
+    border-left-color: #06B6D4 !important;
+  }
+
+  .detail-tips {
+    background: #FEFCE8 !important;
+    border-left-color: var(--warning);
+  }
+
+  .tourism-detail {
+    background: #F0F8FB;
+    border-color: rgba(6, 182, 212, 0.15) !important;
+  }
+
+  /* 普通卡片图片遮罩 - 浅色模式 */
+  .card-city-overlay .card-overlay-name {
+    text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+  }
+
+  /* Lightbox 浅色模式 */
+  .lightbox-overlay {
+    background: rgba(232, 244, 248, 0.95);
+  }
+  .lightbox-close {
+    background: rgba(6, 182, 212, 0.12);
+    border-color: rgba(6, 182, 212, 0.2);
+    color: #0891B2;
+  }
+
+  .chat-container {
+    background: #FFFFFF;
+    box-shadow: 0 8px 40px rgba(6, 182, 212, 0.1);
+  }
+
+  .message-bubble {
+    box-shadow: 0 1px 4px rgba(6, 182, 212, 0.06);
+  }
+
+  .ai-message .message-bubble {
+    background: #E8F4F8;
+    border-color: rgba(6, 182, 212, 0.12);
+  }
+
+  .input-wrapper {
+    background: #F0F8FB !important;
+  }
+
+  /* 技术区域 */
+  .tech-section {
+    background: #E8F4F8 !important;
+  }
+
+  .footer {
+    background: #E8F4F8;
+    border-top-color: rgba(6, 182, 212, 0.15);
+  }
+
+  /* 图片骨架屏（浅色主题） */
+  .img-skeleton {
+    background: linear-gradient(
+      110deg,
+      #D4ECF4 25%,
+      #B8DCE8 50%,
+      #D4ECF4 75%
+    );
+    background-size: 200% 100%;
+  }
+
+  /* KPL联赛总览（浅色） */
+  .kpl-league-section {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(6, 182, 212, 0.12) !important;
+  }
+
+  .kpl-team-chip {
+    background: rgba(6, 182, 212, 0.08);
+  }
+
+  .kpl-team-chip:hover {
+    background: rgba(6, 182, 212, 0.15);
+    border-color: rgba(6, 182, 212, 0.25) !important;
+    box-shadow: 0 4px 12px rgba(6, 182, 212, 0.12);
+  }
+
+  /* 板块内部导航栏 */
+  .block-nav {
+    background: rgba(232, 244, 248, 0.95) !important;
+    backdrop-filter: blur(16px) !important;
+    border-bottom-color: rgba(6, 182, 212, 0.15) !important;
+    box-shadow: 0 2px 8px rgba(6, 182, 212, 0.08) !important;
+  }
+
+  /* 板块内部导航链接 */
+  .block-nav-link {
+    color: #64748B !important;
+  }
+
+  .block-nav-link:hover,
+  .block-nav-link.active {
+    color: #0F172A !important;
+    background: rgba(6, 182, 212, 0.12) !important;
+  }
+
+  /* 灵宝对话快捷功能按钮 */
+  .lb-quick-actions .btn {
+    background: rgba(6, 182, 212, 0.08) !important;
+    border-color: rgba(6, 182, 212, 0.18) !important;
+    color: #374151 !important;
+  }
+
+  .lb-quick-actions .btn:hover {
+    background: rgba(6, 182, 212, 0.15) !important;
+    border-color: #06B6D4 !important;
+    color: #0F172A !important;
+  }
+
+  /* 快捷入口按钮 */
+  .quick-entry-btn {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(6, 182, 212, 0.18) !important;
+    box-shadow: 0 4px 16px rgba(6, 182, 212, 0.1) !important;
+  }
+
+  .quick-entry-btn:hover {
+    background: rgba(255, 255, 255, 1) !important;
+    border-color: #06B6D4 !important;
+    box-shadow: 0 6px 20px rgba(6, 182, 212, 0.2) !important;
+  }
+
+  .quick-entry-btn .quick-entry-title {
+    color: #0F172A !important;
+  }
+
+  /* 板块顶部栏 */
+  .block-header {
+    background: rgba(232, 244, 248, 0.92) !important;
+    border-bottom-color: rgba(6, 182, 212, 0.15) !important;
+    box-shadow: 0 2px 12px rgba(6, 182, 212, 0.08) !important;
+  }
+
+  .block-title {
+    color: #0F172A !important;
+  }
+
+  .block-subtitle {
+    color: #64748B !important;
+  }
+
+  /* 板块返回按钮 */
+  .block-back-btn {
+    color: #475569 !important;
+    background: rgba(99, 102, 241, 0.08) !important;
+    border-color: rgba(99, 102, 241, 0.15) !important;
+  }
+
+  .block-back-btn:hover {
+    color: #0F172A !important;
+    background: rgba(99, 102, 241, 0.15) !important;
+    border-color: var(--primary) !important;
+  }
+
+  /* 导航链接 */
+  .nav-link {
+    color: #475569 !important;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: #0F172A !important;
+  }
+
+  /* 灵宝对话输入区域 */
+  .lb-input-container {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(99, 102, 241, 0.15) !important;
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.05) !important;
+  }
+
+  .lb-input-wrapper {
+    background: #F8FAFC !important;
+    border-color: rgba(99, 102, 241, 0.12) !important;
+  }
+
+  .lb-input {
+    color: #0F172A !important;
+  }
+
+  .lb-input::placeholder {
+    color: #94A3B8 !important;
+  }
+
+  .lb-submit-btn {
+    background: var(--primary) !important;
+    color: white !important;
+  }
+
+  .lb-submit-btn:hover {
+    background: var(--primary-dark) !important;
+  }
+
+  /* 灵宝消息 */
+  .lb-msg-content {
+    color: #1E293B !important;
+  }
+
+  .lb-msg.lb-system .lb-msg-content p,
+  .lb-msg.lb-reply .lb-msg-content p {
+    background: #F1F5F9 !important;
+    border-radius: 12px 12px 12px 2px !important;
+  }
+
+  .lb-msg.lb-user .lb-msg-content p {
+    background: #6366F1 !important;
+    color: white !important;
+    border-radius: 12px 12px 2px 12px !important;
+  }
+
+  /* 英雄卡片 */
+  .orbit-name {
+    color: #0F172A !important;
+  }
+
+  .orbit-role {
+    color: #64748B !important;
+  }
+
+  /* 快捷标签 */
+  .lb-quick-tag {
+    color: #374151 !important;
+    background: rgba(6, 182, 212, 0.08) !important;
+    border-color: rgba(6, 182, 212, 0.15) !important;
+  }
+
+  .lb-quick-tag:hover {
+    color: #0F172A !important;
+    background: rgba(6, 182, 212, 0.15) !important;
+  }
+
+  /* 浮动卡片（快捷入口） */
+  .floating-card {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(6, 182, 212, 0.18) !important;
+    box-shadow: 0 4px 16px rgba(6, 182, 212, 0.08) !important;
+  }
+
+  .floating-card:hover {
+    background: rgba(255, 255, 255, 1) !important;
+    border-color: #06B6D4 !important;
+    box-shadow: 0 6px 20px rgba(6, 182, 212, 0.18) !important;
+  }
+
+  .floating-card span {
+    color: #0F172A !important;
+  }
+
+  .floating-card .card-icon {
+    color: #06B6D4 !important;
+  }
+
+  /* 浮动灵宝 */
+  .floating-lingbao img {
+    box-shadow: 0 0 60px rgba(6, 182, 212, 0.4), 0 0 120px rgba(6, 182, 212, 0.2) !important;
+    border-color: rgba(6, 182, 212, 0.3) !important;
+  }
+
+  .floating-lingbao-bubble {
+    background: rgba(6, 182, 212, 0.95) !important;
+    box-shadow: 0 8px 32px rgba(6, 182, 212, 0.3) !important;
+  }
+
+  .floating-lingbao-bubble::after {
+    border-top-color: rgba(6, 182, 212, 0.95) !important;
+  }
+
+  /* 灵宝对话输入区域 */
+  .lingbao-input-area {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(6, 182, 212, 0.15) !important;
+    box-shadow: 0 -2px 12px rgba(6, 182, 212, 0.06) !important;
+  }
+
+  .lingbao-input-wrapper {
+    background: #F0F8FB !important;
+    border-color: rgba(6, 182, 212, 0.15) !important;
+  }
+
+  #lingbaoInput {
+    color: #0F172A !important;
+  }
+
+  #lingbaoInput::placeholder {
+    color: #94A3B8 !important;
+  }
+
+  .lb-send-btn {
+    background: linear-gradient(135deg, #06B6D4, #0891B2) !important;
+    color: white !important;
+  }
+
+  .lb-send-btn:hover {
+    background: linear-gradient(135deg, #0891B2, #0E7490) !important;
+  }
+
+  /* 灵宝快捷标签 */
+  .lingbao-quick-tags {
+    background: rgba(255, 255, 255, 0.92) !important;
+    border-color: rgba(6, 182, 212, 0.12) !important;
+  }
+
+  .lb-quick-tag {
+    color: #374151 !important;
+    background: rgba(6, 182, 212, 0.08) !important;
+    border-color: rgba(6, 182, 212, 0.15) !important;
+  }
+
+  .lb-quick-tag:hover {
+    color: #0F172A !important;
+    background: rgba(6, 182, 212, 0.15) !important;
+  }
+
+  /* Hero 区域 - 浅色主题 */
+  .hero-badge {
+    background: rgba(6, 182, 212, 0.12) !important;
+    border-color: rgba(6, 182, 212, 0.2) !important;
+    color: #0891B2 !important;
+  }
+
+  .hero-title .title-gradient {
+    background: linear-gradient(135deg, #06B6D4, #0891B2, #0E7490) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+  }
+
+  .hero-subtitle {
+    color: #374151 !important;
+  }
+
+  /* Hero 统计数据 */
+  .hero-stats {
+    border-top-color: rgba(6, 182, 212, 0.2) !important;
+  }
+
+  .stat-value {
+    color: #06B6D4 !important;
+  }
+
+  .stat-label {
+    color: #64748B !important;
+  }
+
+  /* KPL选手头像 - 浅色主题 */
+  .player-avatar {
+    background: linear-gradient(135deg, #F8FCFD, #EEF7FA) !important;
+    border-color: rgba(6, 182, 212, 0.18) !important;
+    box-shadow: 0 0 8px rgba(6, 182, 212, 0.08) !important;
+  }
+
+  .player-avatar-text {
+    color: #6bcde6 !important;
+  }
+
+  .player-legend-badge {
+    background: linear-gradient(135deg, #7ad8e9, #78c9de) !important;
+  }
+}

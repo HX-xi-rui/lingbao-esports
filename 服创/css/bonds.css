@@ -1,0 +1,2515 @@
+/* ========== 选手羁绊区域样式 ========== */
+
+.bonds-section {
+  padding: var(--spacing-3xl) 0;
+  position: relative;
+  z-index: 1;
+}
+
+.bonds-subtitle {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+}
+
+/* ---- 热门羁绊 ---- */
+.hot-bonds-section {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.hot-bonds-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.hot-bond-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-slow);
+  position: relative;
+  overflow: hidden;
+}
+
+.hot-bond-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
+.hot-bond-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.03) 45%, rgba(255,255,255,0.05) 55%, transparent 60%);
+  transform: translateX(-100%);
+  pointer-events: none;
+  transition: transform 0.6s ease;
+}
+
+.hot-bond-card:hover::before {
+  transform: translateX(100%);
+}
+
+.bond-players {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.bond-player-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.bond-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--bond-color, var(--primary)), var(--secondary));
+  border: 2px solid var(--bond-color);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--bond-color) 40%, transparent);
+  overflow: hidden;
+  position: relative;
+}
+
+.bond-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.bond-player-name {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.bond-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  min-width: 70px;
+  margin-top: 22px;
+}
+
+.bond-type-icon {
+  font-size: 18px;
+  filter: drop-shadow(0 0 4px currentColor);
+}
+
+.bond-strength-bar {
+  height: 4px;
+  width: calc(var(--strength, 3) * 10px);
+  max-width: 50px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--bond-color, #6366F1), #F59E0B);
+  box-shadow: 0 0 6px rgba(99, 102, 241, 0.5);
+  transition: width 0.3s ease;
+}
+
+/* 羁绊类型样式 */
+.bond-connector.bond-type-teammate {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.bond-connector.bond-type-teammate .bond-type-icon {
+  color: #10B981;
+}
+
+.bond-connector.bond-type-rival {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.bond-connector.bond-type-rival .bond-type-icon {
+  color: #EF4444;
+}
+
+.bond-connector.bond-type-successor {
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.bond-connector.bond-type-successor .bond-type-icon {
+  color: #8B5CF6;
+}
+
+.bond-label {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.bond-type-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  margin-bottom: 6px;
+}
+
+.bond-type-tag.type-teammate {
+  background: rgba(16, 185, 129, 0.12);
+  color: #10B981;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.bond-type-tag.type-rival {
+  background: rgba(239, 68, 68, 0.1);
+  color: #EF4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.bond-type-tag.type-successor {
+  background: rgba(139, 92, 246, 0.1);
+  color: #8B5CF6;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.bond-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+
+.bond-years {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ---- 选手筛选栏 ---- */
+.players-section {
+  width: 100%;
+  max-width: none !important;
+}
+
+.players-filter-bar {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xl);
+}
+
+.player-filter-btn {
+  padding: 8px 24px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: rgba(99, 102, 241, 0.06);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.player-filter-btn:hover {
+  color: var(--primary-light);
+  background: rgba(99, 102, 241, 0.12);
+}
+
+.player-filter-btn.active {
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+/* ---- 选手卡片 ---- */
+#playersGrid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr 1fr !important;
+  gap: var(--spacing-md) !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-width: 800px !important;
+}
+
+.player-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+  padding-top: calc(var(--spacing-md) + 4px);
+  transition: all var(--transition-slow);
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  position: relative;
+}
+
+.player-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg), 0 0 20px rgba(99, 102, 241, 0.08);
+}
+
+.player-card-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  width: 100%;
+  position: relative;
+  padding-right: 8px;
+}
+
+.player-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--pcolor, var(--primary)), var(--secondary));
+  flex-shrink: 0;
+  position: relative;
+  border: 2px solid var(--pcolor, var(--primary));
+  box-shadow: 0 0 12px color-mix(in srgb, var(--pcolor, var(--primary)) 40%, transparent);
+  overflow: hidden;
+}
+
+.player-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.player-avatar-text {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.player-legend-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  background: linear-gradient(135deg, var(--accent), #EC4899);
+  color: #fff;
+  font-size: 8px;
+  font-weight: 700;
+  padding: 1px 4px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.player-info {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  max-width: calc(100% - 80px);
+}
+
+.player-name {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-realname {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-titles {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 10px;
+  letter-spacing: 0;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.player-meta {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.player-team,
+.player-position {
+  padding: 3px 10px;
+  background: rgba(99, 102, 241, 0.08);
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.player-status {
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.player-status.active {
+  color: #10B981;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.player-status.legendary {
+  color: #F59E0B;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.player-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: var(--spacing-sm);
+  width: 100%;
+}
+
+.player-highlight-tag {
+  padding: 3px 10px;
+  background: rgba(245, 158, 11, 0.07);
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  color: var(--accent-light);
+  border: 1px solid rgba(245, 158, 11, 0.12);
+}
+
+.player-bonds-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: var(--spacing-sm);
+  width: 100%;
+}
+
+.bond-mini {
+  padding: 2px 8px;
+  background: rgba(99, 102, 241, 0.05);
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  color: var(--text-secondary);
+  cursor: default;
+}
+
+.btn.btn-sm {
+  padding: 6px 16px;
+  font-size: 12px;
+  width: 100%;
+}
+
+/* ---- 羁绊关系图 ---- */
+.bond-graph-section {
+  margin-top: var(--spacing-2xl);
+}
+
+.bond-graph-container {
+  position: relative;
+  background: rgba(15, 15, 26, 0.6);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+#bondGraphCanvas {
+  display: block;
+  box-sizing: border-box;
+}
+
+.bond-graph-legend {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-sm);
+  background: rgba(26, 26, 46, 0.8);
+  border-top: 1px solid var(--border-color);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.bond-graph-hint {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: var(--spacing-sm);
+}
+
+/* ---- 收缩按钮 ---- */
+.bonds-toggle-btn,
+.players-toggle-btn {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: var(--spacing-lg) auto 0;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.bonds-toggle-btn:hover,
+.players-toggle-btn:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.bonds-toggle-btn .toggle-icon,
+.players-toggle-btn .toggle-icon {
+  display: inline-block;
+  margin-right: 6px;
+  transition: transform var(--transition-base);
+}
+
+.bonds-toggle-btn.expanded .toggle-icon,
+.players-toggle-btn.expanded .toggle-icon {
+  transform: rotate(180deg);
+}
+
+/* ---- 响应式 ---- */
+@media (max-width: 768px) {
+  .hot-bonds-grid {
+    grid-template-columns: 1fr;
+  }
+  #playersGrid, #playersGrid-competition {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .bond-graph-legend {
+    gap: var(--spacing-md);
+    font-size: 11px;
+  }
+  .player-card-header {
+    gap: var(--spacing-sm);
+  }
+  .player-avatar {
+    width: 44px;
+    height: 44px;
+  }
+  .player-name {
+    font-size: 13px;
+  }
+  .player-realname {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .players-filter-bar {
+    gap: 6px;
+  }
+  .player-filter-btn {
+    padding: 6px 16px;
+    font-size: 12px;
+  }
+}
+
+/* 浅色主题适配 */
+[data-theme="light"] .hot-bond-card,
+[data-theme="light"] .player-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(99, 102, 241, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .bond-graph-container {
+  background: rgba(248, 250, 252, 0.8);
+}
+
+[data-theme="light"] .player-filter-btn {
+  background: rgba(99, 102, 241, 0.06);
+  color: #475569;
+}
+
+/* 羁绊网络图图例 - 浅色主题 */
+[data-theme="light"] .bond-graph-legend {
+  background: rgba(255, 255, 255, 0.95);
+  border-top-color: rgba(99, 102, 241, 0.15);
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .legend-item {
+  color: #475569;
+}
+
+[data-theme="light"] .legend-dot {
+  box-shadow: 0 0 6px currentColor;
+}
+
+/* 收缩按钮 - 浅色主题 */
+[data-theme="light"] .bonds-toggle-btn,
+[data-theme="light"] .players-toggle-btn {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(99, 102, 241, 0.2);
+  color: #475569;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .bonds-toggle-btn:hover,
+[data-theme="light"] .players-toggle-btn:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+}
+
+/* 羁绊卡片和选手卡片 - 浅色主题增强 */
+[data-theme="light"] .hot-bond-card {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(99, 102, 241, 0.15) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-theme="light"] .hot-bond-card:hover {
+  border-color: rgba(99, 102, 241, 0.3) !important;
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.12) !important;
+}
+
+[data-theme="light"] .bond-label,
+[data-theme="light"] .bond-desc {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .bond-player-name {
+  color: #1E293B !important;
+}
+
+[data-theme="light"] .player-card {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(99, 102, 241, 0.15) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-theme="light"] .player-card:hover {
+  border-color: rgba(99, 102, 241, 0.25) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .player-name {
+  color: #1E293B !important;
+}
+
+[data-theme="light"] .player-realname,
+[data-theme="light"] .player-team,
+[data-theme="light"] .player-position {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .player-highlight-tag {
+  background: rgba(99, 102, 241, 0.08) !important;
+  color: #475569 !important;
+}
+
+[data-theme="light"] .bond-mini {
+  background: rgba(99, 102, 241, 0.08) !important;
+  color: #6366F1 !important;
+}
+
+[data-theme="light"] .bond-type-tag {
+  opacity: 0.95;
+}
+
+/* 选手筛选栏 - 浅色主题 */
+[data-theme="light"] .players-filter-bar {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(99, 102, 241, 0.12) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .player-filter-btn {
+  background: rgba(99, 102, 241, 0.06) !important;
+  color: #475569 !important;
+  border-color: transparent !important;
+}
+
+[data-theme="light"] .player-filter-btn:hover {
+  background: rgba(99, 102, 241, 0.12) !important;
+  color: #1E293B !important;
+}
+
+[data-theme="light"] .player-filter-btn.active {
+  background: var(--primary) !important;
+  color: #fff !important;
+}
+
+/* 提示文字 - 浅色主题 */
+[data-theme="light"] .bond-graph-hint {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .bond-years {
+  color: #94A3B8 !important;
+}
+
+/* ---- 选手详情模态框 ---- */
+.player-detail-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal, 9999);
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.player-detail-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.player-detail-card {
+  background: var(--bg-secondary, #1A1A2E);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  max-width: 460px;
+  width: 90vw;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  transform: scale(0.92) translateY(20px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border-top: 3px solid var(--player-color, var(--primary));
+}
+
+.player-detail-overlay.active .player-detail-card {
+  transform: scale(1) translateY(0);
+}
+
+.player-detail-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.player-detail-close:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text-primary);
+}
+
+.pd-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.pd-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--player-color, var(--primary)), var(--secondary));
+  flex-shrink: 0;
+  position: relative;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+}
+
+.pd-avatar-text {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.pd-legend-badge,
+.pd-active-badge {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.pd-legend-badge {
+  background: linear-gradient(135deg, var(--accent), #EC4899);
+  color: #fff;
+}
+
+.pd-active-badge {
+  background: var(--success);
+  color: #fff;
+}
+
+.pd-name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.pd-realname {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.pd-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.pd-motto {
+  font-size: 13px;
+  color: var(--primary-light);
+  font-style: italic;
+  margin-top: 6px;
+}
+
+.pd-stats {
+  display: flex;
+  justify-content: space-around;
+  padding: 16px 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  margin: 16px 0;
+}
+
+.pd-stat {
+  text-align: center;
+}
+
+.pd-stat-val {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--primary-light);
+  display: block;
+}
+
+.pd-stat-label {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.pd-section {
+  margin-bottom: 16px;
+}
+
+.pd-section h5 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.pd-timeline {
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding: 8px 12px;
+  background: rgba(99, 102, 241, 0.05);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--primary);
+}
+
+.pd-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pd-highlight-tag {
+  padding: 4px 12px;
+  background: rgba(245, 158, 11, 0.07);
+  border: 1px solid rgba(245, 158, 11, 0.12);
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  color: var(--accent-light);
+}
+
+.pd-relationships {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pd-rel-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: rgba(99, 102, 241, 0.03);
+  border-radius: var(--radius-md);
+  font-size: 12px;
+}
+
+.pd-rel-icon {
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.pd-rel-type {
+  padding: 1px 8px;
+  border-radius: var(--radius-full);
+  font-size: 10px;
+  font-weight: 600;
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--primary-light);
+}
+
+.pd-rel-target {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.pd-rel-years {
+  color: var(--text-muted);
+  margin-left: auto;
+  font-size: 11px;
+}
+
+.pd-ask-btn {
+  width: 100%;
+  margin-top: 12px;
+}
+
+/* 浅色主题 - 选手详情 */
+[data-theme="light"] .player-detail-card {
+  background: #fff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .pd-timeline {
+  background: #F1F5F9;
+}
+
+[data-theme="light"] .pd-rel-item {
+  background: #F8FAFC;
+}
+
+/* ========== 俱乐部专属界面样式 ========== */
+
+.clubs-section {
+  padding: var(--spacing-3xl) 0;
+  position: relative;
+  z-index: 1;
+}
+
+.clubs-grid {
+  display: grid !important;
+  grid-template-columns: repeat(8, 1fr) !important;
+  gap: 10px !important;
+  margin-top: 30px !important;
+  width: 100% !important;
+  max-width: none !important;
+}
+
+.club-card {
+  background: linear-gradient(145deg, var(--bg-card), rgba(99, 102, 241, 0.03));
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 20px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-slow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-height: 220px;
+  min-width: 120px;
+  max-width: 120px;
+  flex: 0 0 120px;
+  position: relative;
+  overflow: hidden;
+}
+
+.club-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--primary), var(--accent), var(--primary));
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.club-card::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: calc(var(--radius-lg) + 2px);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  opacity: 0;
+  filter: blur(12px);
+  z-index: -1;
+  transition: opacity var(--transition-normal);
+}
+
+.club-card:hover {
+  border-color: transparent;
+  transform: translateY(-6px);
+  box-shadow: 
+    var(--shadow-lg), 
+    0 8px 32px rgba(116, 118, 230, 0.12);
+}
+
+.club-card:hover::before {
+  opacity: 0.3;
+}
+
+.club-card:hover::after {
+  opacity: 0.2;
+}
+
+.club-logo-container {
+  width: 96px !important;
+  height: 96px !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  border: none !important;
+  overflow: hidden !important;
+  flex-shrink: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  z-index: 1 !important;
+  box-shadow: none !important;
+  transition: all var(--transition-normal) !important;
+}
+
+.club-card:hover .club-logo-container {
+  transform: scale(1.05);
+}
+
+.club-logo {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  transition: transform var(--transition-normal) !important;
+  max-width: none !important;
+  max-height: none !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  z-index: 2 !important;
+  transform-origin: center center !important;
+}
+
+.club-name {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  line-height: 1.2;
+  transition: color var(--transition-normal);
+}
+
+.club-card:hover .club-name {
+  color: var(--primary);
+}
+
+.club-abbr {
+  font-size: 10px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.2;
+  padding: 2px 8px;
+  background: rgba(99, 102, 241, 0.08);
+  border-radius: 10px;
+  transition: all var(--transition-normal);
+}
+
+.club-card:hover .club-abbr {
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--primary);
+}
+
+/* 俱乐部详情模态框 */
+.club-detail-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.club-detail-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.club-detail-card {
+  background: var(--bg-secondary, #1A1A2E);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  max-width: 800px;
+  width: 90vw;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  transform: scale(0.92) translateY(20px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border-top: 3px solid var(--primary);
+}
+
+.club-detail-overlay.active .club-detail-card {
+  transform: scale(1) translateY(0);
+}
+
+.club-detail-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.club-detail-close:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text-primary);
+}
+
+.club-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.club-detail-logo-container {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 3px solid var(--primary);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.club-detail-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  display: block;
+  transform-origin: center center;
+}
+
+.club-detail-info {
+  flex: 1;
+}
+
+.club-detail-name {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+}
+
+.club-detail-meta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.club-detail-meta-item {
+  padding: 4px 12px;
+  background: rgba(99, 102, 241, 0.1);
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--primary-light);
+}
+
+.club-detail-stats {
+  display: flex;
+  gap: 20px;
+  margin-top: 12px;
+}
+
+.club-detail-stat {
+  text-align: center;
+}
+
+.club-detail-stat-val {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary-light);
+  display: block;
+}
+
+.club-detail-stat-label {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.club-detail-section {
+  margin-bottom: 24px;
+}
+
+.club-detail-section h4 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.club-detail-section h4::before {
+  content: '';
+  width: 4px;
+  height: 16px;
+  background: var(--primary);
+  border-radius: 2px;
+}
+
+.club-detail-schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.schedule-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  background: rgba(99, 102, 241, 0.05);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--primary);
+}
+
+.schedule-date {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  min-width: 80px;
+}
+
+.schedule-match {
+  flex: 1;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.schedule-score {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary-light);
+  padding: 2px 10px;
+  background: rgba(99, 102, 241, 0.15);
+  border-radius: var(--radius-sm);
+  min-width: 60px;
+  text-align: center;
+}
+
+.schedule-result {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  min-width: 60px;
+  text-align: center;
+}
+
+.schedule-result.win {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10B981;
+}
+
+.schedule-result.lose {
+  background: rgba(239, 68, 68, 0.1);
+  color: #EF4444;
+}
+
+.schedule-result.vs {
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--primary-light);
+}
+
+.club-detail-players {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.player-mini-card {
+  background: rgba(99, 102, 241, 0.08);
+  border: 2px solid transparent;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.player-mini-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.05));
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  z-index: 0;
+}
+
+.player-mini-card:hover {
+  border-color: var(--primary);
+  background: rgba(99, 102, 241, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2);
+}
+
+.player-mini-card:hover::before {
+  opacity: 1;
+}
+
+.player-mini-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.player-mini-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #fff;
+  font-weight: 700;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 2px solid var(--primary);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+}
+
+.player-mini-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.player-mini-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.player-mini-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 6px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-mini-position {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 0;
+  display: inline-block;
+  padding: 4px 10px;
+  background: rgba(99, 102, 241, 0.15);
+  border-radius: 12px;
+  font-weight: 500;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.club-detail-story {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .clubs-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: var(--spacing-md);
+  }
+  
+  .club-logo-container {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .club-name {
+    font-size: 12px;
+  }
+  
+  .club-detail-card {
+    padding: 24px;
+  }
+  
+  .club-detail-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+  
+  .club-detail-stats {
+    justify-content: center;
+  }
+  
+  .club-detail-players {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .player-mini-card {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .player-mini-avatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  .player-mini-name {
+    font-size: 14px;
+  }
+
+  .player-mini-position {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+}
+
+/* 浅色主题适配 */
+[data-theme="light"] .club-card,
+[data-theme="light"] .club-detail-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(99, 102, 241, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .club-detail-overlay {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="light"] .schedule-item,
+[data-theme="light"] .player-mini-card {
+  background: #F8FAFC;
+}
+
+[data-theme="light"] .club-detail-story {
+  color: #475569;
+}
+
+/* ===== 英雄IP板块 ===== */
+
+.heroes-section {
+  padding: 100px 0;
+  background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(99, 102, 241, 0.03) 50%, var(--bg-primary) 100%);
+}
+
+.heroes-filter-bar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 40px;
+  padding: 20px;
+  background: rgba(99, 102, 241, 0.05);
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+.hero-filter-btn {
+  padding: 10px 20px;
+  background: transparent;
+  border: 1.5px solid rgba(99, 102, 241, 0.2);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  font-family: var(--font-sans);
+}
+
+.hero-filter-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary-light);
+  background: rgba(99, 102, 241, 0.08);
+  transform: translateY(-2px);
+}
+
+.hero-filter-btn.active {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
+}
+
+.heroes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 24px;
+}
+
+.hero-card {
+  position: relative;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 24px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  overflow: hidden;
+}
+
+.hero-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(236, 72, 153, 0.08));
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  z-index: 0;
+}
+
+.hero-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 16px 48px rgba(99, 102, 241, 0.3);
+}
+
+.hero-card:hover::before {
+  opacity: 1;
+}
+
+.hero-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-avatar {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 16px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-avatar::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+  transform: rotate(45deg);
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+
+.hero-card:hover .hero-avatar {
+  transform: scale(1.1);
+  box-shadow: 0 12px 32px rgba(99, 102, 241, 0.4);
+}
+
+.hero-card:hover .hero-avatar::after {
+  animation: shine 0.6s ease forwards;
+}
+
+@keyframes shine {
+  0% { left: -50%; opacity: 0; }
+  50% { opacity: 1; }
+  100% { left: 150%; opacity: 0; }
+}
+
+.hero-name {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  letter-spacing: -0.3px;
+}
+
+.hero-role {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(99, 102, 241, 0.12);
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--primary-light);
+  margin-bottom: 12px;
+}
+
+.hero-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero-tag {
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.hero-hint {
+  margin-top: 12px;
+  font-size: 11px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all var(--transition-normal);
+}
+
+.hero-card:hover .hero-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 响应式适配 */
+@media (max-width: 768px) {
+  .heroes-section {
+    padding: 60px 0;
+  }
+
+  .heroes-filter-bar {
+    gap: 8px;
+    padding: 16px;
+  }
+
+  .hero-filter-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .heroes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 16px;
+  }
+
+  .hero-card {
+    padding: 20px 12px;
+  }
+
+  .hero-avatar {
+    width: 80px;
+    height: 80px;
+    font-size: 36px;
+  }
+
+  .hero-name {
+    font-size: 16px;
+  }
+}
+
+/* 浅色主题适配 */
+[data-theme="light"] .hero-card {
+  background: #fff;
+  border-color: rgba(99, 102, 241, 0.1);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .hero-card:hover {
+  box-shadow: 0 12px 32px rgba(99, 102, 241, 0.2);
+}
+
+[data-theme="light"] .hero-name {
+  color: #1E293B;
+}
+
+[data-theme="light"] .hero-tag {
+  background: #F1F5F9;
+  color: #64748B;
+}
+
+/* ========== 中国城市地图样式 ========== */
+
+.china-map-section {
+  margin: 40px 0;
+  position: relative;
+}
+
+.china-map-container {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  background: 
+    linear-gradient(135deg, rgba(99, 102, 241, 0.02), rgba(168, 85, 247, 0.01)),
+    radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.02) 0%, transparent 70%);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+/* 中国地图SVG背景 */
+.china-map-svg {
+  position: absolute;
+  inset: 20px 30px 30px 30px;
+  pointer-events: none;
+}
+
+.china-map-svg svg {
+  width: 100%;
+  height: 100%;
+}
+
+.china-map-svg .china-outline {
+  stroke: var(--primary);
+  stroke-width: 0.6;
+  transition: all 0.3s ease;
+}
+
+.china-map-svg .province {
+  stroke: var(--primary);
+  stroke-width: 0.12;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.china-map-svg .province:hover {
+  opacity: 1;
+  fill: rgba(99, 102, 241, 0.08);
+}
+
+.china-map-svg .province-borders path {
+  stroke: var(--primary);
+  stroke-width: 0.12;
+  transition: all 0.3s ease;
+}
+
+.china-map-svg .capital-dots circle {
+  transition: all 0.2s ease;
+}
+
+.china-map-svg .region-labels text {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.map-bg {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 20% 40%, rgba(249, 115, 22, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(99, 102, 241, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* 地图标题栏 */
+.map-header {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.map-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.map-title-icon {
+  font-size: 20px;
+}
+
+.map-stats {
+  display: flex;
+  gap: 16px;
+}
+
+.map-stat {
+  font-size: 12px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.map-stat-num {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* 城市热点 */
+.map-city-point {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+/* 波纹扩散效果 */
+.map-city-point::before {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+  animation: mapRipple 3s ease-out infinite;
+  pointer-events: none;
+}
+
+.map-city-point.featured::before {
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.25) 0%, transparent 70%);
+  width: 50px;
+  height: 50px;
+}
+
+@keyframes mapRipple {
+  0% { transform: scale(0.5); opacity: 0.8; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+.map-city-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 3px solid var(--bg-card);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2), 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 5;
+}
+
+.map-city-dot::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(99, 102, 241, 0.3);
+  animation: mapDotPulse 2s ease-in-out infinite;
+}
+
+@keyframes mapDotPulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.3); opacity: 0; }
+}
+
+/* 冠军城市特殊样式 */
+.map-city-point.featured .map-city-dot {
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(135deg, #F97316, #EA580C);
+  box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.25), 0 0 25px rgba(249, 115, 22, 0.5);
+}
+
+.map-city-point.featured .map-city-dot::after {
+  border-color: rgba(249, 115, 22, 0.5);
+}
+
+/* 冠军奖杯图标 */
+.map-city-point.featured .map-city-dot::before {
+  content: '🏆';
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  animation: trophyFloat 2s ease-in-out infinite;
+}
+
+@keyframes trophyFloat {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-4px); }
+}
+
+.map-city-label {
+  margin-top: 8px;
+  padding: 5px 12px;
+  background: var(--bg-card);
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.map-city-point.featured .map-city-label {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.18), rgba(234, 88, 12, 0.1));
+  color: #F97316;
+  border-color: rgba(249, 115, 22, 0.3);
+}
+
+.map-city-point:hover {
+  transform: scale(1.2);
+  z-index: 20;
+}
+
+.map-city-point:hover .map-city-dot {
+  box-shadow: 0 0 0 6px rgba(99, 102, 241, 0.35), 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.map-city-point.featured:hover .map-city-dot {
+  box-shadow: 0 0 0 8px rgba(249, 115, 22, 0.4), 0 0 40px rgba(249, 115, 22, 0.6);
+}
+
+.map-city-point:hover .map-city-label {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.map-city-point.featured:hover .map-city-label {
+  background: linear-gradient(135deg, #F97316, #EA580C);
+}
+
+/* 悬浮信息卡片 - 增强版 */
+.map-city-tooltip {
+  position: fixed !important;
+  bottom: auto !important;
+  top: 50% !important;
+  right: 40px !important;
+  left: auto !important;
+  transform: translateY(-50%) !important;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  min-width: 220px;
+  box-shadow: var(--shadow-xl), 0 0 30px rgba(99, 102, 241, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 9999999 !important;
+  pointer-events: auto !important;
+}
+
+.map-city-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 10px solid transparent;
+  border-top-color: var(--bg-secondary);
+}
+
+.map-city-point:hover .map-city-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.map-tooltip-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.map-tooltip-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(168, 85, 247, 0.1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.map-city-point.featured .map-tooltip-icon {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(234, 88, 12, 0.1));
+}
+
+.map-tooltip-title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tooltip-region {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 2px 6px;
+  background: rgba(99, 102, 241, 0.1);
+  border-radius: 8px;
+}
+
+.map-tooltip-team {
+  font-size: 11px;
+  color: var(--primary);
+  margin-top: 2px;
+}
+
+.map-tooltip-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  background: rgba(99, 102, 241, 0.03);
+  border-radius: 8px;
+  border-left: 3px solid var(--primary);
+}
+
+.map-tooltip-stats {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.map-tooltip-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  padding: 8px 6px;
+  background: rgba(99, 102, 241, 0.05);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.map-tooltip-stat:hover {
+  background: rgba(99, 102, 241, 0.1);
+  transform: translateY(-2px);
+}
+
+.map-tooltip-stat-val {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.map-tooltip-stat-val.featured-val {
+  color: #F97316;
+}
+
+.map-tooltip-stat-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.map-tooltip-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.tooltip-highlight {
+  font-size: 11px;
+  color: var(--text-secondary);
+  padding: 4px 8px;
+  background: rgba(249, 115, 22, 0.06);
+  border-radius: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.map-tooltip-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.map-tooltip-tag {
+  font-size: 10px;
+  padding: 3px 8px;
+  background: rgba(99, 102, 241, 0.08);
+  border-radius: 10px;
+  color: var(--text-secondary);
+}
+
+.map-tooltip-action {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-color);
+  font-size: 12px;
+  color: var(--primary);
+  text-align: center;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.map-city-point:hover .map-tooltip-action {
+  color: #F97316;
+}
+
+/* 区域连接线动画 */
+.map-connection-line {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.15), transparent);
+  transform-origin: left center;
+  pointer-events: none;
+  z-index: 1;
+  animation: lineGlow 3s ease-in-out infinite;
+}
+
+@keyframes lineGlow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+/* 图例增强 */
+.map-legend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  margin-top: 20px;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.03), rgba(168, 85, 247, 0.02));
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(99, 102, 241, 0.08);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.legend-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--bg-card);
+  position: relative;
+}
+
+.legend-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  opacity: 0.3;
+}
+
+.legend-dot.featured {
+  background: linear-gradient(135deg, #F97316, #EA580C);
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
+  color: rgba(249, 115, 22, 0.5);
+}
+
+.legend-dot.normal {
+  background: var(--primary);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
+  color: rgba(99, 102, 241, 0.5);
+}
+
+/* 浅色主题 */
+[data-theme="light"] #chinaMap {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.98) 0%, 
+    rgba(241, 245, 249, 0.95) 100%);
+  border-color: rgba(99, 102, 241, 0.12);
+  box-shadow: 
+    0 4px 24px rgba(99, 102, 241, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="light"] .map-bg {
+  background: 
+    radial-gradient(circle at 25% 35%, rgba(99, 102, 241, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 75% 65%, rgba(139, 92, 246, 0.06) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(249, 115, 22, 0.04) 0%, transparent 60%);
+}
+
+[data-theme="light"] .map-legend {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(99, 102, 241, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+[data-theme="light"] .legend-item {
+  color: #475569;
+}
+
+[data-theme="light"] .map-title {
+  color: #1E293B;
+}
+
+[data-theme="light"] .map-stat {
+  color: #64748B;
+}
+
+[data-theme="light"] .map-stat-num {
+  color: #6366F1;
+}
+
+/* 城市热点浅色主题优化 */
+[data-theme="light"] .map-city-dot {
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    0 0 0 2px rgba(99, 102, 241, 0.15),
+    0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .map-city-point.champion .map-city-dot {
+  box-shadow: 
+    0 0 0 2px rgba(245, 158, 11, 0.2),
+    0 0 16px rgba(245, 158, 11, 0.5);
+}
+
+[data-theme="light"] .map-city-point.featured .map-city-dot {
+  box-shadow: 
+    0 0 0 2px rgba(16, 185, 129, 0.2),
+    0 0 12px rgba(16, 185, 129, 0.4);
+}
+
+[data-theme="light"] .map-city-label {
+  color: #1E293B;
+  text-shadow: 
+    0 0 4px rgba(255, 255, 255, 0.9),
+    0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* 悬浮提示卡片浅色主题 */
+[data-theme="light"] .map-city-tooltip {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(99, 102, 241, 0.15);
+  box-shadow: 
+    0 12px 48px rgba(0, 0, 0, 0.12),
+    0 4px 16px rgba(99, 102, 241, 0.08);
+}
+
+[data-theme="light"] .map-tooltip-title {
+  color: #1E293B;
+}
+
+[data-theme="light"] .map-tooltip-team {
+  color: #6366F1;
+}
+
+[data-theme="light"] .map-tooltip-desc {
+  color: #64748B;
+}
+
+[data-theme="light"] .map-tooltip-stats {
+  background: rgba(99, 102, 241, 0.06);
+}
+
+[data-theme="light"] .map-tooltip-stat-val {
+  color: #1E293B;
+}
+
+[data-theme="light"] .map-tooltip-stat-label {
+  color: #64748B;
+}
+
+[data-theme="light"] .tooltip-highlight {
+  background: rgba(99, 102, 241, 0.06);
+  color: #475569;
+}
+
+[data-theme="light"] .map-tooltip-tag {
+  background: rgba(99, 102, 241, 0.1);
+  color: #6366F1;
+}
+
+[data-theme="light"] .map-tooltip-action {
+  color: #6366F1;
+  border-top-color: rgba(99, 102, 241, 0.1);
+}
+
+/* 浅色主题下热点悬停效果增强 */
+[data-theme="light"] .map-city-point:hover .map-city-dot {
+  box-shadow: 
+    0 0 0 3px rgba(99, 102, 241, 0.25),
+    0 0 20px rgba(99, 102, 241, 0.4);
+}
+
+/* 地图图片容器浅色主题 */
+[data-theme="light"] .china-map-img {
+  opacity: 0.95;
+}
+
+[data-theme="light"] .map-image {
+  filter: brightness(0.92) contrast(1.05);
+}
+
+/* 浅色主题下地图提示框优化 */
+[data-theme="light"] .tooltip-region {
+  color: #94A3B8;
+}
+
+[data-theme="light"] .map-tooltip-icon {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* 浅色主题下地图高亮效果 */
+[data-theme="light"] .map-city-point.highlighted .map-city-dot {
+  animation: highlightPulseLight 0.5s ease-in-out infinite;
+}
+
+@keyframes highlightPulseLight {
+  0%, 100% { 
+    box-shadow: 
+      0 0 0 0 rgba(249, 115, 22, 0.6),
+      0 2px 8px rgba(0, 0, 0, 0.15); 
+  }
+  50% { 
+    box-shadow: 
+      0 0 0 15px rgba(249, 115, 22, 0),
+      0 4px 12px rgba(0, 0, 0, 0.2); 
+  }
+}
+
+/* 地图入场动画 */
+.china-map-container .map-city-point {
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.china-map-container.map-loaded .map-city-point {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 热点脉冲效果 */
+.map-city-point::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0;
+  animation: pointPulse 4s ease-in-out infinite;
+  animation-delay: inherit;
+}
+
+@keyframes pointPulse {
+  0%, 100% { transform: scale(1); opacity: 0; }
+  50% { transform: scale(2); opacity: 0.1; }
+}
+
+/* 搜索/筛选高亮效果 */
+.map-city-point.highlighted {
+  z-index: 30;
+}
+
+.map-city-point.highlighted .map-city-dot {
+  animation: highlightPulse 0.5s ease-in-out infinite;
+}
+
+@keyframes highlightPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7); }
+  50% { box-shadow: 0 0 0 15px rgba(249, 115, 22, 0); }
+}
+
+/* 禁用动画（用户偏好） */
+@media (prefers-reduced-motion: reduce) {
+  .map-city-point::before,
+  .map-city-point::after,
+  .map-city-dot::after,
+  .map-connection-line {
+    animation: none;
+  }
+  
+  .china-map-container .map-city-point {
+    transition: none;
+  }
+}
+
+/* 城市卡片高亮闪烁效果 */
+.tourism-card.highlight-flash {
+  animation: cardHighlightFlash 1.5s ease-out;
+}
+
+@keyframes cardHighlightFlash {
+  0% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.6), var(--shadow-lg); }
+  30% { box-shadow: 0 0 30px 10px rgba(249, 115, 22, 0.4), var(--shadow-lg); }
+  100% { box-shadow: var(--shadow-md); }
+}

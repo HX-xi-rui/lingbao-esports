@@ -1,0 +1,216 @@
+/* ========== 首次引导轮播页样式 ========== */
+
+.onboarding-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md);
+  animation: obFadeIn 0.5s ease-out;
+}
+
+@keyframes obFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.onboarding-slider {
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+  position: relative;
+}
+
+/* ---- 幻灯片 ---- */
+.onboarding-slides {
+  position: relative;
+  min-height: 340px;
+}
+
+.onboarding-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transform: translateX(40px);
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  padding: 0 var(--spacing-md);
+}
+
+.onboarding-slide.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  position: relative;
+}
+
+.onboarding-slide.prev {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+/* 图标容器 */
+.onboarding-icon-wrap {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto var(--spacing-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.onboarding-icon {
+  font-size: 48px;
+  position: relative;
+  z-index: 1;
+  animation: obIconFloat 3s ease-in-out infinite;
+}
+
+@keyframes obIconFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.onboarding-icon-ring {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px solid rgba(99, 102, 241, 0.3);
+  animation: obRingPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes obRingPulse {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.15); opacity: 0.1; }
+}
+
+/* 标题和描述 */
+.onboarding-title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 5vw, 28px);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: var(--spacing-md);
+  letter-spacing: 0.5px;
+}
+
+.onboarding-desc {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.7;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+/* 功能标签 */
+.onboarding-features {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-lg);
+}
+
+.ob-feature {
+  padding: 6px 16px;
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ---- 指示器 ---- */
+.onboarding-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: var(--spacing-2xl);
+}
+
+.ob-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ob-dot:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.ob-dot.active {
+  width: 28px;
+  border-radius: 4px;
+  background: var(--primary);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
+}
+
+/* ---- 操作按钮 ---- */
+.onboarding-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+}
+
+.onboarding-actions .btn-ghost {
+  color: rgba(255, 255, 255, 0.5);
+  padding: 10px 24px;
+}
+
+.onboarding-actions .btn-ghost:hover {
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.onboarding-actions .btn-primary {
+  padding: 10px 32px;
+  font-size: 15px;
+  min-width: 120px;
+}
+
+/* ---- 响应式 ---- */
+@media (max-width: 480px) {
+  .onboarding-slides {
+    min-height: 300px;
+  }
+  .onboarding-icon {
+    font-size: 40px;
+  }
+  .onboarding-icon-wrap {
+    width: 80px;
+    height: 80px;
+  }
+  .onboarding-title {
+    font-size: 22px;
+  }
+  .onboarding-desc {
+    font-size: 14px;
+  }
+  .ob-feature {
+    font-size: 12px;
+    padding: 5px 12px;
+  }
+}
+
+/* ---- 减少动画 ---- */
+@media (prefers-reduced-motion: reduce) {
+  .onboarding-icon {
+    animation: none;
+  }
+  .onboarding-icon-ring {
+    animation: none;
+  }
+}
