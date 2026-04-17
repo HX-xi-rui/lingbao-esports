@@ -1,5 +1,9 @@
 [build]
 builder = "python"
+buildCommand = "echo 'Building Python app...'"
 
 [deploy]
 startCommand = "python server.py"
+
+[env]
+PORT = "3000"
