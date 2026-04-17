@@ -16,7 +16,8 @@ import os
 import sys
 import signal
 
-PORT = 3000
+# ===== 修改点 1：从环境变量读取端口 =====
+PORT = int(os.environ.get("PORT", 3000))
 DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
 # TokenHub API配置
@@ -245,25 +246,24 @@ class ProxyHandler(http.server.SimpleHTTPRequestHandler):
 
 
 def main():
-    # 创建服务器实例
-    httpd = socketserver.TCPServer(("", PORT), ProxyHandler)
+    # ===== 修改点 2：显式绑定到 0.0.0.0 =====
+    httpd = socketserver.TCPServer(("0.0.0.0", PORT), ProxyHandler)
     
     # 定义信号处理函数
     def signal_handler(signal, frame):
         print("\n[服务器] 正在关闭...", flush=True)
         print("[服务器] 已关闭", flush=True)
-        # 直接退出进程，不等待shutdown和server_close
         sys.exit(0)
     
     # 注册信号处理
-    signal.signal(signal.SIGINT, signal_handler)  # 处理Ctrl+C
-    signal.signal(signal.SIGTERM, signal_handler)  # 处理终止信号
+    signal.signal(signal.SIGINT, signal_handler)
+    signal.signal(signal.SIGTERM, signal_handler)
     
     print(f"""
 ╔════════════════════════════════════════╗
 ║       灵宝百事通 - 本地开发服务器         ║
 ╠════════════════════════════════════════╣
-║  地址: http://localhost:{PORT}           ║
+║  地址: http://0.0.0.0:{PORT}           ║
 ║  API代理: /api/chat → 腾讯混元          ║
 ║  搜索API: /api/search → 实时数据        ║
 ║  按 Ctrl+C 停止服务器                   ║
@@ -275,7 +275,6 @@ def main():
     except KeyboardInterrupt:
         print("\n[服务器] 正在关闭...", flush=True)
         print("[服务器] 已关闭", flush=True)
-        # 直接退出进程
         sys.exit(0)
 
 
